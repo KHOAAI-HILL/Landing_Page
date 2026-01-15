@@ -684,10 +684,11 @@ footer p {
     font-size: 18px;
     color: var(--secondary-color);
     list-style: none;
-    /* Hide default triangle */
+    /* Standard way to hide marker */
     position: relative;
     padding-right: 50px;
     /* Space for icon */
+    outline: none;
 }
 
 /* Custom Accordion Icon */
