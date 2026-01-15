@@ -91,30 +91,107 @@ body {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* Mobile Nav - Basic implementation */
+/* Mobile Nav - Hamburger Implementation */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Animation */
+.menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
-        flex-direction: column;
-        background: rgba(30, 78, 121, 0.95);
-        /* Solid dark blue for mobile readability */
-        position: fixed;
-        /* Stick to top on mobile */
+        flex-direction: row;
+        /* Row layout for Logo - Hamburger */
+        justify-content: space-between;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+        /* Softer gradient */
+        position: absolute;
+        /* Keep absolute to sit on top of hero */
+        top: 0;
+        left: 0;
+        align-items: center;
     }
 
-    .nav-links {
-        margin-top: 15px;
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-links li a {
-        font-size: 16px;
+    .menu-toggle {
+        display: flex;
+        z-index: 1001;
     }
 
     .logo {
         font-size: 24px;
+        z-index: 1001;
+        /* Keep logo above menu bg */
+    }
+
+    .nav-links {
+        display: none;
+        /* Hide by default */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 78, 121, 0.98);
+        /* Solid Brand Blue */
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        /* Space for top bar */
+        padding-bottom: 40px;
+        z-index: 1000;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links.active {
+        display: flex;
+        animation: slideDown 0.4s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 15px 0;
+        font-size: 20px;
     }
 }
 
