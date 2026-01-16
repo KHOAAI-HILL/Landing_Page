@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hội thi vẽ tranh thiếu nhi Cành cọ mùa xuân</title>
-    <link rel="stylesheet" href="style.css?v=1.1">
+    <link rel="stylesheet" href="style.css?v=1.2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -15,6 +15,8 @@
 
 <body>
     <header class="hero">
+        <canvas id="hero-canvas"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
         <nav class="navbar">
             <div class="logo">Cành Cọ Mùa Xuân</div>
             <div class="menu-toggle" id="mobile-menu">
@@ -31,16 +33,102 @@
             </ul>
         </nav>
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>HỘI THI VẼ TRANH THIẾU NHI CÀNH CỌ MÙA XUÂN LẦN THỨ 32 – NĂM 2026</h1>
-            <h2>CHỦ ĐỀ: CHUNG TAY BẢO VỆ MÔI TRƯỜNG</h2>
-            <p class="info-text">📅 Ngày 21/02/2026 | 📍 Cung Văn Hóa Lao Động TP.HCM</p>
-            <a href="#register" class="cta-button">
-                <span class="cta-main">ĐĂNG KÝ CHO BÉ NGAY</span>
-                <span class="cta-sub">(Hạn chót: 09/02/2026)</span>
+        <div class="hero-content glass-card">
+            <h1 class="hero-title">Để Trí Tưởng Tượng Của Con 'Ươm Mầm' Trái Đất 🌍</h1>
+            <h2 class="hero-subtitle">Chào đón bé đến với Cành Cọ Mùa Xuân lần thứ 32 – Sân chơi hội họa nơi những nét
+                vẽ ngây thơ chung tay bảo vệ màu xanh cuộc sống.</h2>
+            <a href="#register" class="cta-button hero-cta">
+                <span class="cta-main">GHI DANH CHO BÉ</span>
             </a>
         </div>
     </header>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById("hero-canvas");
+            const ctx = canvas.getContext("2d");
+            const frameCount = 192; // Total number of images
+            const images = [];
+            const imagePath = "anh-1/seq_"; // Prefix
+
+            // Resize canvas to fill screen
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Preload images
+            let imagesLoaded = 0;
+            for (let i = 1; i <= frameCount; i++) {
+                const img = new Image();
+                img.src = `${imagePath}${i}.jpg`;
+                img.onload = () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === 1 && i === 1) {
+                        // Draw first frame immediately when ready
+                        drawFrame(0);
+                    }
+                };
+                images.push(img);
+            }
+
+            // Animation Loop
+            let currentFrame = 0;
+            const fps = 24;
+            const interval = 1000 / fps;
+            let lastTime = Date.now();
+
+            function drawFrame(frameIndex) {
+                if (images[frameIndex] && images[frameIndex].complete) {
+                    // Draw image covering the canvas (simulate object-fit: cover)
+                    const img = images[frameIndex];
+                    const canvasRatio = canvas.width / canvas.height;
+                    const imgRatio = img.width / img.height;
+                    let drawWidth, drawHeight, offsetX, offsetY;
+
+                    if (canvasRatio > imgRatio) {
+                        drawWidth = canvas.width;
+                        drawHeight = canvas.width / imgRatio;
+                        offsetX = 0;
+                        offsetY = (canvas.height - drawHeight) / 2; // Center vertically
+                        // For mobile preference (bottom alignment), we might want offsetY to be different
+                        // But for general 'cover center', this is standard.
+                        // Let's implement 'center bottom' logic if on mobile? 
+                        // Actually, CSS on .hero handles layout. 
+                        // For the canvas image drawing, let's stick to center-center or mimic the CSS 'center bottom' logic if possible.
+
+                        if (window.innerWidth <= 768) {
+                            offsetY = canvas.height - drawHeight; // Align bottom
+                        }
+                    } else {
+                        drawWidth = canvas.height * imgRatio;
+                        drawHeight = canvas.height;
+                        offsetX = (canvas.width - drawWidth) / 2;
+                        offsetY = 0;
+                    }
+
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+                }
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const now = Date.now();
+                const delta = now - lastTime;
+
+                if (delta > interval) {
+                    lastTime = now - (delta % interval);
+                    drawFrame(currentFrame);
+                    currentFrame = (currentFrame + 1) % frameCount;
+                }
+            }
+
+            animate();
+        });
+    </script>
 
     <!-- Section 2: Detailed Information & Prizes -->
     <section id="info" class="section-info-prizes">
