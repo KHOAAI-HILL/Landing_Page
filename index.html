@@ -390,7 +390,7 @@
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại:</label>
-                            <input type="tel" name="entry.361457323" placeholder="Nhập sđt liên hệ" required>
+                            <input type="tel" name="entry.561057313" placeholder="Nhập sđt liên hệ" required>
                         </div>
                         <button type="submit" class="submit-btn" style="width: 100%;">GỬI ĐĂNG KÝ</button>
                     </form>
@@ -453,11 +453,31 @@
 
         // Show success message after form submission
         function showSuccessMessage() {
+            // Add a longer timeout to allow iframe to load
             setTimeout(function () {
-                document.querySelector('.register-form').style.display = 'none';
-                document.querySelector('.register-form-container > p').style.display = 'none';
-                document.getElementById('success-message').style.display = 'block';
-            }, 500);
+                const iframe = document.getElementById('hidden_iframe');
+                let success = true;
+
+                // Try to check iframe content (may fail due to CORS)
+                try {
+                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                    // If we can access the iframe and it contains error text, mark as failed
+                    if (iframeDoc.body && iframeDoc.body.innerText.toLowerCase().includes('error')) {
+                        success = false;
+                    }
+                } catch (e) {
+                    // CORS error is expected - assume success if we can't check
+                    console.log('Cannot check iframe content (CORS), assuming success');
+                }
+
+                if (success) {
+                    document.querySelector('.register-form').style.display = 'none';
+                    document.querySelector('.register-form-container > p').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                } else {
+                    alert('⚠️ Có lỗi xảy ra khi gửi form. Vui lòng thử lại hoặc liên hệ BTC qua hotline.');
+                }
+            }, 1500); // Increased timeout to 1.5s
         }
     </script>
 </body>
