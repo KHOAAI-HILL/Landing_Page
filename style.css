@@ -200,8 +200,10 @@ body {
     position: relative;
     width: 100%;
     height: 100vh;
-    /* Static background removed for Canvas animation */
-    /* background-image: url('1.jpg'); */
+    /* Static background as placeholder while Canvas loads */
+    background-image: url('anh-1/seq_1.jpg');
+    background-size: cover;
+    background-position: center bottom;
 
     display: flex;
     justify-content: center;

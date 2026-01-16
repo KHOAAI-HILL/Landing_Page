@@ -362,29 +362,47 @@
                 <!-- Column 2: Form -->
                 <div class="register-form-container">
                     <h3>Bước 2: Điền thông tin thí sinh</h3>
-                    <form class="register-form">
+                    <p style="font-size: 14px; color: #666; margin-bottom: 15px; font-style: italic;">
+                        ⚠️ Vui lòng chuyển khoản trước khi điền form đăng ký.
+                    </p>
+
+                    <!-- Hidden iframe for seamless form submission -->
+                    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+                    <form class="register-form"
+                        action="https://docs.google.com/forms/d/e/1FAIpQLSeyJUgLQvqqGe3SHKwyvL2Z0q_KZRUt6z704yytZXpkvs1DTg/formResponse"
+                        method="POST" target="hidden_iframe" onsubmit="showSuccessMessage()">
                         <div class="form-group">
                             <label>Họ và tên bé:</label>
-                            <input type="text" placeholder="Nhập họ tên đầy đủ" required>
+                            <input type="text" name="entry.1464633397" placeholder="Nhập họ tên đầy đủ" required>
                         </div>
                         <div class="form-group">
                             <label>Năm sinh (Ngày/Tháng/Năm):</label>
-                            <input type="date" required>
+                            <input type="date" id="birthdate" required>
+                            <!-- Hidden fields for Google Form date format -->
+                            <input type="hidden" name="entry.122853608_year" id="birth_year">
+                            <input type="hidden" name="entry.122853608_month" id="birth_month">
+                            <input type="hidden" name="entry.122853608_day" id="birth_day">
                         </div>
                         <div class="form-group">
                             <label>Họ tên phụ huynh:</label>
-                            <input type="text" placeholder="Nhập họ tên phụ huynh" required>
+                            <input type="text" name="entry.61252524" placeholder="Nhập họ tên phụ huynh" required>
                         </div>
                         <div class="form-group">
                             <label>Số điện thoại:</label>
-                            <input type="tel" placeholder="Nhập sđt liên hệ" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Tải ảnh biên lai chuyển khoản:</label>
-                            <input type="file" accept="image/*" required>
+                            <input type="tel" name="entry.361457323" placeholder="Nhập sđt liên hệ" required>
                         </div>
                         <button type="submit" class="submit-btn" style="width: 100%;">GỬI ĐĂNG KÝ</button>
                     </form>
+
+                    <!-- Success Message (hidden by default) -->
+                    <div id="success-message" style="display: none; text-align: center; padding: 30px;">
+                        <div style="font-size: 60px; margin-bottom: 15px;">🎉</div>
+                        <h3 style="color: var(--primary-color); margin-bottom: 10px;">Đăng ký thành công!</h3>
+                        <p>Cảm ơn bạn đã đăng ký cho bé tham gia Hội thi Cành Cọ Mùa Xuân 2026.</p>
+                        <p style="margin-top: 10px; font-size: 14px; color: #666;">BTC sẽ liên hệ xác nhận qua số điện
+                            thoại bạn cung cấp.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -421,6 +439,26 @@
                 menuToggle.classList.remove('is-active');
             });
         });
+
+        // Handle date input for Google Form
+        const birthdateInput = document.getElementById('birthdate');
+        if (birthdateInput) {
+            birthdateInput.addEventListener('change', function () {
+                const date = new Date(this.value);
+                document.getElementById('birth_year').value = date.getFullYear();
+                document.getElementById('birth_month').value = date.getMonth() + 1; // Months are 0-indexed
+                document.getElementById('birth_day').value = date.getDate();
+            });
+        }
+
+        // Show success message after form submission
+        function showSuccessMessage() {
+            setTimeout(function () {
+                document.querySelector('.register-form').style.display = 'none';
+                document.querySelector('.register-form-container > p').style.display = 'none';
+                document.getElementById('success-message').style.display = 'block';
+            }, 500);
+        }
     </script>
 </body>
 
