@@ -201,7 +201,7 @@ body {
     width: 100%;
     height: 100vh;
     /* Static background as placeholder while Canvas loads */
-    background-image: url('anh-1/seq_1.jpg');
+    background-image: url('1.jpg');
     background-size: cover;
     background-position: center bottom;
 
@@ -213,16 +213,7 @@ body {
     overflow: hidden;
 }
 
-#hero-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    /* Behind overlay */
-}
+
 
 .hero-overlay {
     position: absolute;
@@ -230,8 +221,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-    /* Darker bottom for contrast */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    /* Lighter overlay to show banner clearly */
     z-index: 1;
 }
 
@@ -252,15 +243,15 @@ body {
 /* Glassmorphism Card */
 /* Glassmorphism Card */
 .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    /* Barely visible opacity (5%) */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.15);
+    /* Slightly more visible for text readability */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 20px 30px;
     /* Reduced vertical padding by 50% */
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 .hero-title {
@@ -270,8 +261,8 @@ body {
     color: #FFFFFF;
     margin-bottom: 20px;
     line-height: 1.2;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    /* Subtle drop shadow */
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6), 0px 2px 5px rgba(0, 0, 0, 0.8);
+    /* Stronger shadow for better readability */
     text-transform: none;
 }
 
@@ -283,8 +274,8 @@ body {
     color: #FFFFFF;
     text-transform: none;
     margin-bottom: 40px;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    /* Subtle drop shadow */
+    text-shadow: 0px 3px 10px rgba(0, 0, 0, 0.6), 0px 1px 3px rgba(0, 0, 0, 0.8);
+    /* Stronger shadow for better readability */
     max-width: 80%;
     line-height: 1.6;
 }
@@ -382,6 +373,7 @@ html {
         max-width: 100%;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
