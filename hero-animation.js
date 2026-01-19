@@ -2,7 +2,7 @@ const canvas = document.getElementById('hero-canvas');
 const context = canvas.getContext('2d');
 
 const frameCount = 192;
-const currentFrame = index => `anh-1/seq_${index}.jpg`;
+const currentFrame = index => `anh-1/seq_${index}.webp`;
 
 const images = [];
 const imageState = {

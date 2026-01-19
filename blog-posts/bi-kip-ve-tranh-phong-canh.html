@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Bí Kíp Vẽ Tranh Phong Cảnh Mùa Xuân | Góc Sáng Tạo - Cành Cọ Mùa Xuân</title>
+    <meta name="description"
+        content="Hướng dẫn các bé cách phối màu sắc tươi sáng cho bầu trời, cây cối và hoa lá mùa xuân. Từ những nét cọ đơn giản, bé sẽ tạo ra bức tranh thiên nhiên tuyệt đẹp!">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../blog.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar"
+        style="background: linear-gradient(to bottom, rgba(34, 139, 34, 0.95), rgba(34, 139, 34, 0.8));">
+        <a href="../index.html" class="logo">Cành Cọ Mùa Xuân</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="../index.html#info">Thể lệ</a></li>
+            <li><a href="../index.html#prizes">Giải thưởng</a></li>
+            <li><a href="../index.html#timeline">Lịch trình</a></li>
+            <li><a href="../blog.html" style="color: var(--accent-color);">Góc Sáng Tạo</a></li>
+            <li><a href="../index.html#register" class="nav-cta">Đăng ký ngay</a></li>
+        </ul>
+    </nav>
+
+    <!-- Post Detail -->
+    <article class="post-detail">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="../index.html">Trang chủ</a> / <a href="../blog.html">Góc Sáng Tạo</a> / <span>Bí Kíp Vẽ Tranh
+                    Phong Cảnh Mùa Xuân</span>
+            </div>
+
+            <header class="post-header">
+                <span class="blog-card-tag">Hướng dẫn</span>
+                <h1 class="post-title">Bí Kíp Vẽ Tranh Phong Cảnh Mùa Xuân</h1>
+                <div class="post-meta">
+                    <span>📅 15/01/2026</span>
+                    <span>✏️ BTC</span>
+                </div>
+            </header>
+
+            <div class="post-featured-image">
+                <img src="../blog/thumbnails/thumbnail-1.png" alt="Bí Kíp Vẽ Tranh Phong Cảnh Mùa Xuân">
+            </div>
+
+            <div class="post-content">
+                <p><strong>1. Chuẩn bị dụng cụ:</strong></p>
+                <ul>
+                    <li>Giấy vẽ khổ A3</li>
+                    <li>Màu sáp dầu hoặc màu nước</li>
+                    <li>Bút chì, tẩy</li>
+                </ul>
+
+                <p><strong>2. Các bước thực hiện:</strong></p>
+                <ul>
+                    <li><strong>Bước 1: Phác thảo:</strong> Vẽ đường chân trời và những ngọn núi xa xa. Đừng quên vẽ
+                        thêm ông mặt trời nhé!</li>
+                    <li><strong>Bước 2: Tô màu nền:</strong> Dùng màu xanh dương nhạt cho bầu trời và xanh lá non cho
+                        đồng cỏ.</li>
+                    <li><strong>Bước 3: Chi tiết:</strong> Điểm xuyến thêm những bông hoa đỏ, vàng rực rỡ.</li>
+                </ul>
+
+                <blockquote>"Vẽ tranh là cách tuyệt vời để lưu giữ mùa xuân!" - Cô Mai Hương</blockquote>
+
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=2071&auto=format&fit=crop"
+                        alt="Bé vẽ tranh" width="100%">
+                    <figcaption>Các bé đang say sưa sáng tạo</figcaption>
+                </figure>
+            </div>
+
+            <div class="post-navigation">
+                <a href="../blog.html" class="back-link">← Quay lại danh sách bài viết</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Cung Văn Hóa Lao Động TP. Hồ Chí Minh</h3>
+                <p>📍 55B Nguyễn Thị Minh Khai, Phường Bến Thành, Quận 1, TP.HCM</p>
+                <p>📞 Hotline: <strong>0903.835.083</strong> (Anh Chí Văn) - <strong>0907.862.309</strong> (Anh Thắng)
+                </p>
+                <p>🌐 <a href="https://facebook.com/cungvhld" target="_blank"
+                        style="color: white;">facebook.com/cungvhld</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('is-active');
+        });
+
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('is-active');
+            });
+        });
+    </script>
+</body>
+
+</html>
