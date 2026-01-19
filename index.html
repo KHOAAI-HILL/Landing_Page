@@ -35,7 +35,8 @@
         rel="stylesheet">
 
     <!-- Google reCAPTCHA v3 -->
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcUJ08sAAAAAHvDeZNvCCLYOlUQHN-DmY30J3z6"></script>
+    <!-- Google reCAPTCHA v3 (Removed temporarily) -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LcUJ08sAAAAAHvDeZNvCCLYOlUQHN-DmY30J3z6"></script> -->
 </head>
 
 <body>
@@ -414,13 +415,16 @@
                 </p>
                 <p>🌐 <a href="https://facebook.com/cungvhld" target="_blank" rel="noopener noreferrer"
                         style="color: white;">facebook.com/cungvhld</a></p>
+                <!-- reCAPTCHA Disclaimer (Removed temporarily) -->
+                <!-- 
                 <p style="font-size: 12px; margin-top: 15px; opacity: 0.7;">
                     Trang web này được bảo vệ bởi reCAPTCHA và tuân thủ
                     <a href="https://policies.google.com/privacy" target="_blank"
                         style="color: white; text-decoration: underline;">Chính sách Bảo mật</a> và
                     <a href="https://policies.google.com/terms" target="_blank"
                         style="color: white; text-decoration: underline;">Điều khoản Dịch vụ</a> của Google.
-                </p>
+                </p> 
+                -->
             </div>
         </div>
     </footer>
@@ -505,42 +509,9 @@
             btn.innerText = "Đang xử lý...";
             btn.disabled = true;
 
-            // Bypass reCAPTCHA for local testing (file:// protocol)
-            if (window.location.protocol === 'file:' || typeof grecaptcha === 'undefined') {
-                console.warn('⚠️ Running locally or reCAPTCHA missing: Bypassing security check.');
-                submitted = true;
-                form.submit();
-                return false;
-            }
-
-            // Execute reCAPTCHA for production
-            grecaptcha.ready(function () {
-                grecaptcha.execute('6LcUJ08sAAAAAHvDeZNvCCLYOlUQHN-DmY30J3z6', { action: 'submit' })
-                    .then(function (token) {
-                        btn.innerText = "Đang gửi...";
-
-                        let tokenInput = form.querySelector('input[name="g-recaptcha-response"]');
-                        if (!tokenInput) {
-                            tokenInput = document.createElement('input');
-                            tokenInput.type = 'hidden';
-                            tokenInput.name = 'g-recaptcha-response';
-                            form.appendChild(tokenInput);
-                        }
-                        tokenInput.value = token;
-
-                        submitted = true;
-                        form.submit();
-                    })
-                    .catch(function (error) {
-                        console.error('reCAPTCHA error:', error);
-                        // On error, let them submit anyway just in case (optional, but good for UX if captcha breaks)
-                        // Or alert. Let's alert but offer bypass if they try again?
-                        // For now, strict alert.
-                        alert('⚠️ Lỗi kết nối Google Captcha. Vui lòng kiểm tra mạng hoặc thử lại.');
-                        btn.innerText = originalText;
-                        btn.disabled = false;
-                    });
-            });
+            // Direct submission (reCAPTCHA removed)
+            submitted = true;
+            form.submit();
 
             return false; // Prevent default form submission
         }
